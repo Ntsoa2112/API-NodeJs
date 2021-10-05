@@ -1,0 +1,6 @@
+GET http://localhost:3000/api/eleve/get
+Content-Type: application/json
+
+{
+    "id":"51"
+}

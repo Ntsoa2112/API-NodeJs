@@ -1,9 +1,8 @@
 const eleveMdls = require('../models/eleve');
-const fs = require('fs');
 
 module.exports = {
     list: async (req, res) => {
-        let listEleve = await eleveMdls.getListEleve();
+        let listEleve = await eleveMdls.getList();
         res.send(listEleve);
     },
 

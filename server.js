@@ -16,7 +16,6 @@ const normalizePort = val => {
   return false;
 };
 
-//Si la plateforme de déploiement propose un port par défaut, express l'utilise, sinon express utilise le port 3000
 const port = normalizePort(process.env.APP_PORT);
 app.set('port', port);
 

@@ -1,7 +1,7 @@
 const db = require('../service/connect');
 
 module.exports = {
-    getListEleve: () => {
+    getList: () => {
         return new Promise((resolve, reject) => {
             db.query("SELECT * FROM eleve", function(err, resultats){
               if(err) reject(new Error("Erreur ressource list élèves"));

@@ -2,17 +2,17 @@
 
 The goal of this project is to create an API structure that is easy to use and secure. API-NodeJs makes data available for other applications to use, so the main functionality found in this API is structured data exposure
 
-# Installation procedure
+## Installation procedure
 
-1- npm install
-2- Import the base.sql database
-3- Create the environment variable .env file, then copy the content of .env.example into .env, after adding the name of your database, the password and all the necessary configurations
-4- npm run start
+- npm install
+- Import the base.sql database
+- Create the environment variable .env file, then copy the content of .env.example into .env, after adding the name of your database, the password and all the necessary configurations
+- npm run start
 
-# Code sample
+## Code sample
+
+controllers/eleve.js :
 ```Javascript
-
-controllers/eleve.js
 
 const eleveMdls = require('../models/eleve');
 
@@ -37,10 +37,11 @@ module.exports = {
     },
 
 }
+```
 
 
-
-models/eleve.js
+models/eleve.js :
+```Javascript
 
 const db = require('../service/connect');
 

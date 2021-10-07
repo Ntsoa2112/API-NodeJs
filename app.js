@@ -19,4 +19,7 @@ app.use(express.static("public"));
 const eleveCtrl = require('./routes/eleve');
 app.use('/api/eleve', eleveCtrl);
 
+const userCtrl = require('./routes/user');
+app.use('/api/user', userCtrl);
+
 module.exports = app;

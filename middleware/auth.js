@@ -4,9 +4,9 @@ module.exports = {
   user_connecter: (req, res, next) => {
     try {
       const token = req.headers.authorization.split(' ')[1];
-      const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-      const userId = decodedToken.userId;
-      if (req.body.userId && req.body.userId !== userId) {
+      const decodedToken = jwt.verify(token, 'mykey');
+      const userId = decodedToken.id;
+      if (req.body.id && req.body.id !== userId) {
         throw 'Invalid user ID';
       } else {
         next();

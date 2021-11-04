@@ -1,4 +1,6 @@
 const express = require('express');
+const fileUpload = require("express-fileupload");
+
 const app = express();
 
 app.use((req, res, next) => {
@@ -14,6 +16,7 @@ app.use((req, res, next) => {
 //body-parser analyse le corps de la demande
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+app.use(fileUpload());
 app.use(express.static("public"));
 
 const eleveCtrl = require('./routes/eleve');

@@ -50,28 +50,33 @@ module.exports = {
 
   },
 
-  login: async function (req, res) {
-    var email = req.body.email, mdp = req.body.password;
+  login: async(req, res) => {
+    var phone = req.body.phone, mdp = req.body.password;
     try {
-        let user = await userMdls.get(null, email, ",password");
+        let user = await userMdls.get(null, phone, ",password");
         if(user){
-            bcrypt.compare(mdp, user.password, function(err){
+            bcrypt.compare(mdp, user.password, function(err, verifier){
                 if (err) return res.status(403).send("Mot de passe incorrecte");
-                const token = service.generer_token(user.id, email);
-                res.send({
-                    id: user.id,
-                    token: token,
-                    nom: user.nom,
-                    prenom: user.prenom,
-                    appelation: user.appelation,
-                });
+                if(verifier){
+                    const token = service.generer_token(user.id, phone);
+                    res.send({
+                        id: user.id,
+                        token: token,
+                        nom: user.nom,
+                        prenom: user.prenom,
+                        appelation: user.appelation,
+                    });
+                }
+                else{
+                    res.status(403).send("Mot de passe incorrecte");
+                }
             })
         }
         else{
             res.status(403).send("Vous n'avez pas de compte");
         }
     } catch (error) {
-        res.status(500).send(error.message);
+        res.status(500).send(error);
     }
   },
 

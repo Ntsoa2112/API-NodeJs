@@ -1,5 +1,6 @@
 const express = require('express');
 const fileUpload = require("express-fileupload");
+const compression = require('compression')
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(fileUpload());
 app.use(express.static("public"));
+app.use(compression())
 
 const eleveCtrl = require('./routes/eleve');
 app.use('/api/eleve', eleveCtrl);

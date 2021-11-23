@@ -17,6 +17,24 @@ module.exports = {
               resolve(resultat);
             })
         })
+    },
+
+    create: (appeltion, niveau) => {
+        return new Promise((resolve, reject) => {
+            db.query("INSERT INTO eleve(appelation, niveau) VALUES(?,?)", [appeltion, niveau] , function(err, resultat){
+              if(err) reject(new Error("Erreur ressource create élève"));
+              resolve(resultat);
+            })
+        })
+    },
+
+    update: (id, appelation, niveau) => {
+        return new Promise((resolve, reject) => {
+            db.query("UPDATE eleve SET appelation = ?, niveau = ? WHERE id = ?", [appelation, niveau, id] , function(err, resultat){
+              if(err) reject(new Error("Erreur ressource create élève"));
+              resolve(resultat);
+            })
+        })
     }
 
 }

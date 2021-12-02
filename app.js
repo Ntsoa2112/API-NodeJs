@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(fileUpload());
 app.use(express.static("public"));
-app.use(compression())
+app.use(compression());
 
 const eleveCtrl = require('./routes/eleve');
 app.use('/api/eleve', eleveCtrl);

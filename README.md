@@ -3,67 +3,54 @@
 The goal of this project is to create an API structure that is easy to use and secure. API-NodeJs makes data available for other applications to use, so the main functionality found in this API is structured data exposure
 
 ## Installation procedure
-
+- Prerequis: Node.js ,SGBD mysql, nodemon (npm install -g nodemon), REST Client extension Visual Studio Code
+- git clone https://github.com/Ntsoa2112/API-NodeJs.git
+- cd API-NodeJs
 - npm install
 - Import the base.sql database
 - Create the environment variable .env file, then copy the content of .env.example into .env, after adding the name of your database, the password and all the necessary configurations
 - npm run start
 
-## Code sample
+## Route
+List élève:
 
-controllers/eleve.js :
-```Javascript
+        GET http://localhost:3000/api/eleve
 
-const eleveMdls = require('../models/eleve');
+Obtenir un élève:
 
-module.exports = {
-    list: async (req, res) => {
-        try {
-            let listEleve = await eleveMdls.getList();
-            res.send(listEleve);
-        } catch (error) {
-            res.status(500).send(error.message);
+        GET http://localhost:3000/api/eleve/1
+
+Insertion élève:
+
+        POST http://localhost:3000/api/eleve
+        Content-Type: application/json
+
+        {
+            "appelation":"RAKELY",
+            "niveau":"T1"
         }
-    },
 
-    get: async(req, res) => {
-        let id = req.query.id ? parseInt(req.query.id) : parseInt(req.body.id);
-        try {
-            let eleve = await eleveMdls.get(id);
-            res.send(eleve);
-        } catch (error) {
-            res.status(500).send(error.message);
+Register user:
+
+        POST http://localhost:3000/api/user/register
+        Content-Type: application/json
+
+        {
+            "nom":"RAKOTO",
+            "prenom":"Bema",
+            "email":"bema@gmail.com",
+            "appelation":"Bemakely",
+            "droit":"Niveau 2",
+            "password":"bema@gmail.com",
+            "confirm_password":"bema@gmail.com"
         }
-    },
 
-}
-```
+Login user:
 
+        POST http://localhost:3000/api/user/login
+        Content-Type: application/json
 
-models/eleve.js :
-```Javascript
-
-const db = require('../service/connect');
-
-module.exports = {
-    getList: () => {
-        return new Promise((resolve, reject) => {
-            db.query("SELECT * FROM eleve", function(err, resultats){
-              if(err) reject(new Error("Erreur ressource list élèves"));
-              resolve(resultats);
-            })
-        })
-    },
-
-    get: (id) => {
-        return new Promise((resolve, reject) => {
-            db.query("SELECT * FROM eleve WHERE id = ?", [id] , function(err, resultat){
-              if(err) reject(new Error("Erreur ressource get élève"));
-              resolve(resultat);
-            })
-        })
-    }
-
-}
-
-```
+        {
+            "email":"bema@gmail.com",
+            "password":"bema@gmail.com"
+        }

@@ -24,7 +24,8 @@ module.exports = {
         let appelation = req.body.appelation, niveau = req.body.niveau;
         try {
             let create_eleve = await eleveMdls.create(appelation, niveau);
-            res.send(create_eleve);
+            if(create_eleve.affectedRows == 1) return res.send("Insertion réussie")
+            res.status(500).send("Insertion échec");
         } catch (error) {
             res.status(500).send(error.message);
         }
@@ -34,7 +35,8 @@ module.exports = {
         let appelation = req.body.appelation, niveau = req.body.niveau, id = req.body.id;
         try {
             let update_eleve = await eleveMdls.update(id, appelation, niveau);
-            res.send(update_eleve);
+            if(update_eleve.affectedRows == 1) return res.send("Modification réussie")
+            res.status(500).send("Modification échec");
         } catch (error) {
             res.status(500).send(error.message);
         }

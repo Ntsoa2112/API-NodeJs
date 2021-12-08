@@ -21,10 +21,10 @@ app.use(fileUpload());
 app.use(express.static("public"));
 app.use(compression());
 
-const eleveCtrl = require('./routes/eleve');
-app.use('/api/eleve', eleveCtrl);
+const eleveRoute = require('./routes/eleve');
+app.use('/api/eleve', eleveRoute);
 
-const userCtrl = require('./routes/user');
-app.use('/api/user', userCtrl);
+const userRoute = require('./routes/user');
+app.use('/api/user', userRoute);
 
 module.exports = app;

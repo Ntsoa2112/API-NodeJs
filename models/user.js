@@ -13,7 +13,7 @@ module.exports = {
 
     get: (id, email, colonne_password = '') => {
         return new Promise((resolve, reject) => {
-            db.query("SELECT email, nom, prenom, appelation, droit "+colonne_password+" FROM user WHERE id = ? OR email = ?", [id, email] , function(err, resultat){
+            db.query("SELECT id, email, nom, prenom, appelation, droit "+colonne_password+" FROM user WHERE id = ? OR email = ?", [id, email] , function(err, resultat){
               if(err) reject(new Error("Erreur ressource get élève"));
               resolve(resultat[0]);
             })
